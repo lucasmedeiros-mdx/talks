@@ -1,0 +1,33 @@
+.img {
+	width: 100% !important;
+}
+.height-img {
+	height: 100px;
+}
+
+.mtop {
+	margin-top: 2em !important;
+}
+.mleft {
+	margin-left: 2em !important;
+}
+
+/* 2 column grid layout */
+.column {
+	width: 50%;
+	float: left;
+}
+.pull-left {
+	float: left;
+}
+.pull-right {
+	float: right;
+}
+.negative {
+	color: #11103f !important;
+}
+.absolute {
+	position: absolute;
+	top: 0;
+	right: 0;
+}

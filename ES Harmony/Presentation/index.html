@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>ES6 Harmony</title>
+
+		<meta name="description" content="A Review of ECMAScript 6 Features">
+		<meta name="author" content="Lucas Medeiros">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="css/custom.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>ES Harmony</h1>
+					<h3>A Review of ECMAScript 6 Features</h3>
+					<p>
+						Created by <a href="https://github.com/lucasmedeiros-mdx">Lucas Medeiros</a> / <a href="http://twitter.com/lmedeiros_mdx">@lmedeiros_mdx</a>
+					</p>
+				</section>
+
+				<section>
+					<section>
+						<h2>The Road so Far</h2>
+
+						<img src="img/roadsofar.jpg">
+					</section>
+
+					<section>
+						
+						<h2><a href="http://javascriptjabber.com/124-jsj-the-origin-of-javascript-with-brendan-eich/">Netscape <small><span data-fragment-index="0" class="fragment rol-in">10 days</span></small></a></h2>
+
+						<div class="column">
+							<img src="img/Brendan_Eich.jpg">
+
+							<p>Brendan Eich</p>
+						</div>
+
+						<div class="column mtop">
+							<h4 data-fragment-index="0" class="fragment grow">Mocha</h4>
+							<h4 class="fragment grow">LiveScript</h4>
+							<h4 class="fragment grow">JavaScript</h4>
+						</div>
+
+					</section>
+
+					<section data-center="false" data-background="img/ie-vs-netscape.jpg">
+						<h2><a class="negative" href="http://loopinfinito.com.br/2013/01/09/a-historia-do-user-agent-string/">Microsoft</a></h2>
+					</section>
+
+					<section>
+						<div class="column">
+							<h3>ECMAScript</h3>
+							<img src="img/ECMA-logo.jpg" class="height-img">
+						</div>
+
+						<div class="column">
+							<h3>TC39</h3>
+							<img src="img/ecmascript6.png" class="height-img">
+						</div>
+
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">Arrow Functions</a></h2>
+						<p>
+							Shorter syntax compared to function expressions and lexically binds the this value.
+						</p>
+					</section>
+					<section>
+						<h3>ES5</h3>
+						<p><img src="img/es5-function.png" class="img"></p>
+					</section>
+					<section>
+						<h3>ES6</h3>
+						<p><img src="img/es6-arrowfunctions.png" class="img"></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let">Block Scope</a></h2>
+					</section>	
+
+					<section>
+						<h3>Function Scope (var)</h3>
+						<p><img src="img/es5-function-scope.png" class="img"></p>
+					</section>
+
+					<section>
+						<h3>Block Scope (let)</h3>
+						<p><img src="img/es6-block-scope.png" class="img"></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings">Template Strings</a></h2>
+					</section>
+
+					<section>						
+						<h3>Multi-line String</h3>
+						<p>
+							<img src="img/es6-multiline-string.png" class="img">
+						</p>
+					</section>
+					<section>
+						<h3>Expression interpolation</h3>
+						<p>
+							<img src="img/es6-template-string.png" class="img">
+						</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">Destructuring Assignments</a></h2>
+
+						<ul>
+							<li>Object and array destructuring</li>
+							<li>Multiple-value returns</li>
+							<li>Destruct objects passed as function parameter</li>
+						</ul>
+
+					</section>					
+
+					<section>
+						<h4>ES6</h4>
+
+						<p><img src="img/es6-destructuring.png"></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Parameters</h2>
+					</section>
+					
+					<section>
+						<h3><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters">Default Parameters</a></h3>
+						
+						<h4>ES5</h4>
+						<p><img src="img/es5-default-parameter.png" class="img"></p>
+
+						<h4>ES6</h4>
+						<p><img src="img/es6-default-parameter.png" class="img"></p>
+					</section>
+
+					<section>
+						<h3><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters">Rest Parameters</a></h3>
+
+						<p><img src="img/es6-rest-parameters.png" class="img"></p>
+
+						<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator">Spread Operator</a>: Inverse of a Rest Parameter (Replaces Function.prototype.apply)</p>
+
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2><a href="https://people.mozilla.org/~jorendorff/es6-draft.html#sec-class-definitions">Classes</a></h2>
+					</section>
+
+					<section>
+						<h4>ES6 - Product Class</h4>
+						<p><img src="img/es6-class.png" class="img"></p>
+					</section>
+
+					<section>
+						<h4>ES6 - Inheritance</h4>
+						<p><img src="img/es6-class-inheritance.png" class="img"></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*">Generators</a></h2>
+
+						<p>A function becomes a generator if it contains one or more yield expressions.</p>
+					</section>
+
+					<section>
+						<h3>Generate Infinite Integers</h3>
+
+						<p><img src="img/es6-infinite-generator.png" class="img"></p>
+					</section>
+
+					<section>
+						<h3><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Iterators_2">Iterator</a></h3>
+
+						<p>Iterating over generated values</p>
+						<p><img src="img/es6-generator.png" class="img"></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2><a href="http://www.2ality.com/2014/09/es6-modules-final.html">Modules</a></h2>
+
+						<ul>
+							<li>CommonJS (Node.js)</li>
+							<li>AMD (RequireJS)</li>
+						</ul>
+					</section>
+
+					<section>
+						<h4>CommonJS implementation</h4>
+
+						<h5>main.js</h5>
+						<p>
+							<img src="img/es6-export.png" class="img">
+						</p>
+
+						<h5>import.js</h5>
+						<p>
+							<img src="img/es6-import.png" class="img">
+						</p>
+					</section>
+
+					<section>
+						<h4>Exporting Class "Book"</h4>
+
+						<h5>product.js</h5>
+						<p>
+							<img src="img/es6-export-class.png" class="img">
+						</p>
+
+						<h5>import.js</h5>
+						<p>
+							<img src="img/es6-import-class.png" class="img">
+						</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy">Proxy</a></h2>
+
+						<p>The npm module <a href="https://www.npmjs.org/package/harmony-proxy">harmony-proxy</a> was used on the examples</p>
+						<pre><code class="javascript" data-trim>var Proxy = require('harmony-proxy');</code></pre>
+
+						<p class="mtop"><small><a href="http://loopinfinito.com.br/2014/09/09/ecmascript-6-proxy/">[pt-BR Article] ECMAScript 6 Proxy</a> by <a href="https://twitter.com/caio_gondim">@caio_gondim</a></small></p>
+					</section>
+
+					<section>
+						<h4>Using Proxy to validate the passed value</h4>
+						<p>
+							<img src="img/es6-proxy.png" class="img">
+						</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promises</a></h2>
+
+						<p>Deferred and asynchronous computations</p>
+
+					</section>
+
+					<section>
+						<h3>Callback</h3>
+						<p><img src="img/es5-callback.png" class="img">
+
+						<h4>Callback Chain</h4>
+						<p><img src="img/es5-callback-chain.png" class="img"></p>
+					</section>
+
+					<section>
+						<h3>ES6 Promises</h3>
+						<p><img src="img/es6-promise.png" class="img"></p>
+
+						<p><img src="img/es6-promise-chain.png" class="img"></p>
+					</section>
+
+					<section>
+						<h3>jQuery's Deferred to Promise</h3>
+						<pre><code class="javascript" data-trim>
+							var promise = Promise.resolve($.ajax('/get.json'));
+						</code></pre>
+
+						<h3 class="mtop"><a href="https://github.com/kriskowal/q/wiki/API-Reference" class="fragment in" >Using Promises Today</a></h3>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Standard Library</h2>
+					</section>
+
+					<section>
+						<h3><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Maps</a></h3>
+
+						<p><img src="img/es6-map.png" class="img"></p>
+					</section>
+
+					<section>
+						<h3><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Sets</a></h3>
+
+						<p><img src="img/es6-set.png" class="img"></p>
+					</section>
+
+					<section>
+						<h3>Additions</h3>
+
+						<ul>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">Object.assign</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from">Array.from</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/of">Array.of</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find">Array.prototype.find</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith">String.prototype.startsWith</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith">String.prototype.endsWith</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/contains">String.prototype.contains</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize">String.prototype.normalize</a></li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>ES7 Hype</h2>
+						<h4><a href="http://wiki.ecmascript.org/doku.php?id=strawman:async_functions">Async Functions</a></h4>
+
+						<pre><code class="javascript" data-trim>
+async function loadProducts() {
+    let books = await getJSON('books.json');
+    let computers = await getJSON('computers.json');
+
+    let products = [...books, ...computers];
+    Product.addToStore(products);
+}						
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>ES7 Hype</h2>
+						<h4><a href="http://www.2ality.com/2013/01/comprehensions.html">Array/Generator Comprehensions</a></h4>
+
+						<pre><code class="javascript" data-trim>
+[for (x of a) for (y of b) if (x > y) [x,y]]
+
+let numbers = [1,2,3];
+let squares = [for (x of numbers) x*x];
+
+
+(for (x of a) for (y of b) if (x > y) [x,y])
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<h2>ES6 References</h2>
+
+					<a href="http://es6rocks.com/">
+						<img src="img/reference-es6rocks.png" width="170px" height="200px" alt="ES6 Rocks" title="ES6 Rocks">
+					</a>
+
+					<a href="http://www.2ality.com/">
+						<img src="img/reference-axelrauschmayer.jpeg" height="200px" alt="Axel Rauschmayer" title="Axel Rauschmayer">
+					</a>
+
+					<a href="https://www.tagtree.tv/">
+						<img src="img/reference-hendrik.jpg" height="200px" alt="Hendrik Swanepoel" title="Hendrik Swanepoel">
+					</a>
+
+					<a href="https://developer.mozilla.org/en-US/">
+						<img src="img/reference-mdn.png" height="200px" alt="MDN" title="Mozilla Developer Network">
+					</a>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,				
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
