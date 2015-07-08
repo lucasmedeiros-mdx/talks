@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>BrazilJS 2013</title>
+
+    <meta name="description" content="Resumo BrazilJS 2013">
+    <meta name="author" content="Lucas Medeiros">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+        document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <section data-copyright="cp-hide">
+                <h1>BrazilJS</h1>
+                <h3>Resumo BrazilJS 2013</h3>
+                <p>
+                    <small>Por <a href="http://lmedeiros.com/">Lucas Medeiros</a></small>
+                </p>
+            </section>
+
+            <section data-copyright="cp-hide">
+                <h2>Talks</h2>
+                <ul>
+                    <li class="fragment" data-fragment-index="0">ECMAScript</li>
+                    <li class="fragment" data-fragment-index="1">Desempenho</li>
+                    <li class="fragment" data-fragment-index="2">node.js</li>
+                    <li class="fragment" data-fragment-index="3">Mobile</li>
+                    <li class="fragment" data-fragment-index="4">Web Workers</li>
+                    <li class="fragment" data-fragment-index="5">Standards</li>
+                </ul>
+            </section>
+
+            <section data-copyright="cp-zenorocha">
+                <img src="img/slide-9-638.jpg">
+            </section>
+
+            <section>
+                <section>
+                    <img src="img/slide-10-1024.jpg">
+                </section>
+
+                <section>
+                    <img src="img/slide-11-1024.jpg">
+                </section>
+
+                <section>
+                    <img src="img/slide-12-1024.jpg">
+                </section>
+            </section>
+
+            <section>
+                <h2>
+                    O que as principais empresas web estão fazendo?
+                </h2>
+            </section>
+
+            <section>
+                <section>
+                    <img src="img/slide-16-1024.jpg">
+                </section>
+
+                <section>
+                    <img src="img/slide-18-1024.jpg">
+                </section>
+
+                <section>
+                    <img src="img/slide-20-1024.jpg">
+
+                    <aside class="notes">
+                        Adobe
+                    </aside>
+                </section>
+
+                <section>
+                    <img src="img/slide-24-1024.jpg">
+
+                    <aside class="notes">
+                        Yahoo
+                    </aside>
+                </section>
+            </section>
+
+            <section>
+                <h2>
+                    como usar um "componente" hoje?
+                </h2>
+            </section>
+
+            <section>
+                <section>
+                    <h3>1. Procure um plugin jQuery</h3>
+                    <img src="img/google-plugin-search.jpg">
+                </section>
+
+                <section>
+                    <h3>2. Copie e cole o código de alguém</h3>
+                    <img src="img/copy-paste.jpg">
+                </section>
+
+                <section>
+                    <h3>3. Torça pra que funcione</h3>
+                    <img src="img/carlton.gif">
+                </section>
+            </section>
+
+            <section>
+            	<img src="img/slide-6-1024.jpg">
+            </section>
+
+            <section>
+                <h2><a href="http://garann.github.io/template-chooser/">Templates</a></h2>
+                <h3 class="fragment" data-fragment-index="0">Templates são blocos reutilizáveis de código</h3>
+            </section>
+
+            <section>
+                <h2>gambiarra #1</h2>
+                <pre><code data-trim class="html">
+<div id="template" style="display: none">
+    <img src="img/logo.png" class="logo">
+</div>
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>gambiarra #2</h2>
+                <pre><code data-trim>
+<script id="template" type="text/x-handlebars-template">
+    <img src="img/logo.png">
+</script>
+                </code></pre>
+            </section>
+
+            <section data-copyright="cp-zenorocha">
+                <h2>
+                    < template >
+                </h2>
+            </section>
+
+            <section>
+                <section>
+                    <h2>como criar?</h2>
+
+                    <pre><code data-trim>
+<template id="meuTemplate">
+    <img src="">
+</template>
+                    </code></pre>
+                </section>
+
+                <section data-copyright="cp-zenorocha">
+                    <h2>como usar?</h2>
+                    <pre><code data-trim class="javascript">
+// 1. Acessa o conteúdo do template
+var t = document.querySelector('#meuTemplate').content;
+
+// 2. Manipula elemento interno do template
+t.querySelector('img').src = 'logo.png';
+
+// 3. Clona e Insere no DOM
+document.body.appendChild(t.cloneNode(true));
+                    </code></pre>
+                </section>
+
+                <section data-copyright="cp-lucasmedeiros">
+                    <h2>
+                        <a href="http://caniuse.com/#search=template">Compatibilidade?</a>
+                    </h2>
+                </section>
+            </section>
+
+            <section data-copyright="cp-crockford">
+                <h2>Javascript</h2>
+
+                &nbsp;
+                <h4>Good Parts.</h4>
+                <h4>Bad Parts.</h4>
+            </section>
+
+            <section>
+                <h2>Esquerda ou Direita?</h2>
+
+                <pre class="pull-left half"><code data-trim class="javascript">
+block
+{
+    ...
+}
+                </code></pre>
+
+                <pre class="pull-left half"><code data-trim class="javascript">
+block {
+
+    ...
+}
+                </code></pre>
+
+                <ul class="pull-left tab-pane">
+                    <li class="fragment" data-fragment-index="0">Seja consistente</li>
+                    <li class="fragment" data-fragment-index="1">Todo mundo deveria fazer do meu jeito</li>
+                </ul>
+
+            </section>
+
+            <section>
+                <h2>Esquerda ou Direita?</h2>
+
+                <div class="pre-container">
+                <pre class="pull-left half"><code data-trim class="javascript">
+return
+{
+    ok: false
+};
+
+//Silent Error!
+                </code></pre>
+
+                <pre class="pull-left half"><code data-trim class="javascript">
+return {
+    ok: true
+};
+
+
+// (Y)
+                </code></pre>
+                </div>
+
+            </section>
+
+            <section>
+                <h2>Código</h2>
+                <pre><code data-trim class="javascript">
+var a = b = 0;
+                </code></pre>
+
+                <div class="fragment" data-fragment-index="0">
+                    <p class="red">
+                        #
+                    </p>
+                    <pre><code data-trim class="javascript">
+var a = 0, b = 0;
+                    </code></pre>
+                </div>
+
+                <div class="fragment" data-fragment-index="1">
+                    <p class="ltgreen">
+                        #
+                    </p>
+                    <pre><code data-trim class="javascript">
+b = 0;
+var a = b;
+                    </code></pre>
+                </div>
+            </section>
+
+            <section>
+                <h2>Código</h2>
+                <pre><code data-trim class="javascript">
+if (a) b(); c();
+                </code></pre>
+
+                <div class="fragment" data-fragment-index="0">
+                    <p class="red">
+                        #
+                    </p>
+                    <pre><code data-trim class="javascript">
+if (a) {
+    b();
+    c();
+}
+                    </code></pre>
+                </div>
+
+                <div class="fragment" data-fragment-index="1">
+                    <p class="ltgreen">
+                        #
+                    </p>
+                    <pre><code data-trim class="javascript">
+if (a) {
+    b();
+}
+c();
+                    </code></pre>
+                </div>
+            </section>
+
+            <section>
+                <h2>Código</h2>
+                <pre><code data-trim class="javascript">
+if (a = b) { ... }
+                </code></pre>
+
+                <div class="fragment" data-fragment-index="0">
+                    <p class="red">
+                        #
+                    </p>
+                    <pre><code data-trim class="javascript">
+if (a === b) { ... }
+                    </code></pre>
+                </div>
+
+                <div class="fragment" data-fragment-index="1">
+                    <p class="ltgreen">
+                        #
+                    </p>
+                    <pre><code data-trim class="javascript">
+a = b;
+if (a) { ... }
+                    </code></pre>
+                </div>
+            </section>
+            <section>
+                <h3><a class="fragment" data-fragment-index="0" href="http://jshint.com/">JSHint /</a></h3>
+                <h2>JSLint</h2>
+                <p>JSLint é um programa de análise usado no desenvolvimento de software para checar se o código-fonte de um programa escrito em JavaScript compila com as regras de codificação da linguagem.</p>
+
+                <a href="http://www.jslint.com/">http://www.JSLint.com/</a>
+            </section>
+
+            <section data-copyright="cp-crockford">
+                <h2>Variáveis Globais</h2>
+
+                <ul>
+                    <li>Evite usar variáveis globais</li>
+                    <li>Quando usar, seja explícito</li>
+                </ul>
+
+                <div class="tab-pane-p fragment" data-fragment-index="0">
+                    <h3>VARIAVEL_GLOBAL</h3>
+
+                    <ul>
+                        <li>Limite a uma variável global por projeto</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <section data-copyright="cp-crockford">
+                    <h2>EVAL is evil</h2>
+
+                    <div class="fragment shrink" data-fragment-index="0">
+                        <p>A função eval permite acesso ao compilador JavaScript. Embora as vezes necessário, geralmente indica código mal escrito.</p>
+                        &nbsp;
+                        <p>A função eval é a funcionalidade de maior uso incorreto no JavaScript.</p>
+                    </div>
+
+                    <div class="fragment" data-fragment-index="0">
+                        <ul>
+                            <li>Debug</li>
+                            <li>Segurança</li>
+                            <li>Desempenho</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section data-copyright="cp-lucasmedeiros">
+                    <h2>EVAL is evil</h2>
+
+                    <pre><code data-trim class="javascript">
+function isChecked(optionNumber) {
+    return eval("forms[0].option" + optionNumber + ".checked");
+}
+
+var result = isChecked(1);
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>EVAL is evil</h2>
+
+                    <pre><code data-trim class="javascript">
+function defaultFunction(element, callback) {
+    console.log(element);
+    return eval(callback);
+}
+
+function sum(a, b) {
+    return a + b;
+}
+
+defaultFunction("Uso incorreto do eval", "sum(1, 2)");
+                    </code></pre>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h2>Funções autoinvocáveis</h2>
+
+                    <pre><code data-trim class="javascript">
+(function() {
+
+    ...
+
+}());
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Adicione "jQuery" como parâmetro</h3>
+
+                    <pre><code data-trim class="javascript">
+(function($) {
+
+    ...
+
+}(jQuery));
+                    </code></pre>
+
+                </section>
+
+                <section>
+                    <h3>Adicione "window" como parâmetro</h3>
+
+                    <pre><code data-trim class="javascript">
+(function($, window) {
+
+    ...
+
+}(jQuery, window));
+                    </code></pre>
+
+                </section>
+
+                <section>
+                    <h3>Adicione "undefined" como parâmetro</h3>
+
+                    <pre><code data-trim class="javascript">
+(function($, window, undefined) {
+
+    ...
+
+}(jQuery, window));
+                    </code></pre>
+
+                </section>
+
+                <section>
+                    <h3>Ponto-e-vírgula defensivo</h3>
+
+                    <pre><code data-trim class="javascript">
+;(function($, window, undefined) {
+
+    ...
+
+}(jQuery, window));
+                    </code></pre>
+
+                </section>
+
+                <section>
+                    <h3>Strict mode</h3>
+
+                    <pre><code data-trim class="javascript">
+;(function($, window, undefined) {
+
+    "use strict";
+
+    ...
+
+}(jQuery, window));
+                    </code></pre>
+
+                </section>
+
+            </section>
+
+            <section>
+                <h2><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode">Strict Mode</a></h2>
+                <p>
+                    "Strict Mode" altera alguns erros silenciosos do JavaScript, lançando exceções quando detectados
+                </p>
+            </section>
+
+            <section data-copyright="cp-lucasmedeiros">
+                <h3>Convertendo mancadas em erros</h3>
+                <pre><code data-trim class="javascript">
+"use strict";
+globalVariable = 17; // throws a ReferenceError
+                </code></pre>
+
+                <pre class="fragment" data-fragment-index="0"><code data-trim class="javascript">
+"use strict";
+var o = { p: 1, p: 2 }; // SyntaxError
+                </code></pre>
+
+                <pre class="fragment" data-fragment-index="1"><code data-trim class="javascript">
+function sum(a, a, c){ // SyntaxError
+    "use strict";
+    return a + b + c;
+}
+                </code></pre>
+
+                <pre class="fragment" data-fragment-index="2"><code data-trim class="javascript">
+"use strict";
+var x = 17;
+with (obj) // SyntaxError
+{
+    x; //impossível determinar contexto de "x"
+}
+                </code></pre>                
+            </section>
+
+            <section data-copyright="cp-jcemer">
+        		<img src="img/slide_9.jpg">
+            </section>
+
+            <section>
+        		<img src="img/slide_10.jpg">
+            </section>
+
+            <section>
+        		<img src="img/slide_11.jpg">
+            </section>
+
+            <section>
+        		<img src="img/slide_12.jpg">
+            </section>
+
+            <section>
+        		<img src="img/slide_13.jpg">
+            </section>
+
+            <section>
+        		<img src="img/slide_15.jpg">
+            </section>
+
+            <section>
+        		<img src="img/slide_16.jpg">
+            </section>
+
+            <section>
+            	<img src="img/slide_22.jpg">
+            </section>
+
+            <section>
+            	<img src="img/slide_23.jpg">
+            </section>
+
+            <section>
+            	<img src="img/slide_24.jpg">
+            </section>
+
+            <section>
+            	<img src="img/slide_30.jpg">
+            </section>
+
+            <section>
+            	<img src="img/slide_31.jpg">
+            </section>
+
+            <section>
+            	<img src="img/slide_37.jpg">
+            </section>
+
+            <section data-copyright="cp-jcemer">
+            	<img src="img/slide_41.jpg">
+            </section>
+
+            <section data-copyright="cp-lucasmedeiros">
+            	<h3><a href="http://ejohn.org/blog/simple-javascript-inheritance/">Simple JavaScript Inheritance</a></h3>
+                <pre><code data-trim class="javascript">
+var Person = Class.extend({
+  init: function(isDancing){
+    this.dancing = isDancing;
+  },
+  dance: function(){
+    return this.dancing;
+  }
+});
+ 
+var Ninja = Person.extend({
+  init: function(){
+    this._super( false );
+  },
+  dance: function(){
+    // Call the inherited version of dance()
+    return this._super();
+  },
+  swingSword: function(){
+    return true;
+  }
+});
+ 
+var p = new Person(true);
+p.dance(); // => true
+ 
+var n = new Ninja();
+n.dance(); // => false
+n.swingSword(); // => true
+                </code></pre>
+
+            </section>
+
+            <section data-copyright="cp-jcemer">
+            	<img src="img/slide_44.jpg">
+            </section>
+
+            <section>
+            	<img src="img/slide_45.jpg">
+            </section>
+
+            <section>
+            	<img src="img/slide_51.jpg">
+            </section>
+
+            <section>
+            	<img src="img/slide_52.jpg">
+            </section>
+
+            <section>
+            	<img src="img/slide_53.jpg">
+            </section>
+
+            <section>
+            	<img src="img/slide_54.jpg">
+            </section>
+
+            <section>
+            	<img src="img/slide_56.jpg">
+            </section>
+
+            <section>
+            	<img src="img/slide_57.jpg">
+            </section>
+
+            <section>
+            	<img src="img/slide_58.jpg">
+            </section>
+
+            <section>
+            	<img src="img/slide_59.jpg">
+            </section>
+
+            <section>
+            	<img src="img/slide_62.jpg">
+            </section>
+
+            <section>
+            	<img src="img/slide_63.jpg">
+            </section>
+
+            <section data-copyright="cp-jcemer">
+            	<img src="img/slide_71.jpg">
+            </section>
+        </div>
+
+        <aside class="copyright">
+            <div class="cp-zenorocha hidden">
+                <img src="img/foto-zeno.jpg">
+                <a href="#">Zeno Rocha</a>
+            </div>
+            <div class="cp-crockford hidden">
+                <img src="img/foto-crockford.jpg">
+                <a href="#">Douglas Crockford</a>
+            </div>
+            <div class="cp-jcemer hidden">
+                <img src="img/foto-jcemer.jpeg">
+                <a href="#">Jean Carlo Emer</a>
+            </div>
+            <div class="cp-lucasmedeiros hidden">
+                <img src="img/foto-medeiros.jpg">
+                <a href="#">Lucas Medeiros</a>
+            </div>
+            <div class="cp-hide"></div>
+        </aside>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                //{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                //{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+            ]
+        });		
+
+		Reveal.addEventListener( 'slidechanged', function( event ) {
+		    var currentSlide = event.currentSlide,
+		    	copyright = currentSlide.getAttribute('data-copyright'),
+				hasClass = function(ele,cls) {
+				    return ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
+				},
+				removeClass = function(ele,cls) {
+				        if (hasClass(ele,cls)) {
+				            var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
+				            ele.className=ele.className.replace(reg,' ');
+				        }
+			    };
+
+		    if (copyright) {		    	
+
+		    	var cp = document.querySelectorAll('.copyright > div');
+
+		    	for (var i in cp) {
+		    		if (cp[i].className && !hasClass(cp[i], 'hidden')) {
+		    			cp[i].className = cp[i].className += ' hidden';
+		    		}
+		    	}
+
+		    	var current = document.querySelector('.' + copyright);
+		    	Reveal.getConfig().previous = Reveal.getConfig().current;
+		    	Reveal.getConfig().current = current;
+
+		    	removeClass(current, 'hidden');
+		    }
+		} );
+
+    </script>
+
+</body>
+</html>
