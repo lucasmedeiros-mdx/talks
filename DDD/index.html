@@ -1,0 +1,446 @@
+﻿<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Princípios de DDD e Injeção de Dependência</title>
+
+        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+        <meta name="author" content="Hakim El Hattab">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/serif.css" id="theme">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h2>Princípios de Domain-Driven Design e Injeção de Dependência</h2>
+                    <p>
+                        <small><a href="lmedeiros.com">Lucas Medeiros</a></small>
+                    </p>
+                </section>
+
+                <section data-state="intro bg"></section>
+
+                <section>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Nível 1</th>
+                                <th>Nível 2</th>
+                                <th>Nível 3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Acesso a dados Centralizado</td>
+                                <td></td>
+                                <td>?</td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Acesso a dados Simulado</td>                                
+                                <td></td>
+                                <td>?</td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Separação de Conceitos</td>
+                                <td></td>
+                                <td>?</td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Domain-Driven Design</td>
+                                <td></td>
+                                <td>?</td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Teste Unitário</td>                             
+                                <td></td>
+                                <td>?</td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Teste de Integração</td>
+                                <td></td>
+                                <td>?</td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Equipes Grandes</td>
+                                <td></td>
+                                <td>?</td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Orientado a Serviços</td>
+                                <td></td>
+                                <td>?</td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Baixo Acoplamento</td>
+                                <td></td>
+                                <td>?</td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Mais Simples</td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                                <td>?</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section>
+                    <h2>Domain-Driven Design</h2>
+                    <div class="left">
+                        <img src="img/onion.png" />
+                    </div>
+                    <div class="right">
+                        <ul class="mtop">
+                            <li>Domínio</li>
+                            <li>Infra-estrutura</li>
+                            <li>Interface de Usuário</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <section>
+                        <h4>Camada de Domínio</h4>
+                        <h2>Serviços</h2>
+                    </section>
+
+                    <section data-state="services" data-transition="none">
+                        <h2>Serviços</h2>                       
+                    </section>
+
+                    <section>
+                         <pre><code data-trim>
+public class UserService : BaseService
+{
+    public bool Login(string username, string password) 
+    {
+        if (!this.repository.IsValid(username, password))
+            return false;
+            
+        if (!this.repository.HasExpired(username))
+            return false;
+        
+        return true;
+    }
+}
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h4>Camada de Infra-Estrutura</h4>
+                        <h2>Repositórios</h2>
+                    </section>
+
+                    <section>
+                         <pre><code data-trim>
+public class UserRepository : GenericRepository&lt;User&gt;
+{   
+    public bool IsValid(username, password) 
+    {
+        return this.context.User.Any(user =&gt; 
+            user.Username == username && 
+            user.Password == password);
+    }
+    
+    public bool HasExpired(username) 
+    {
+        return this.context.User.Any(user =&gt;
+            user.ExpireDate > Datetime.Now);
+    }
+}
+                        </code></pre>
+                    </section>
+                </section>
+                
+                <section>
+                    <img src="img/lifecycle.jpg" />
+                </section>
+
+                <section>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Nível 1</th>
+                                <th>Nível 2</th>
+                                <th>Nível 3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Acesso a dados Centralizado</td>
+                                <td></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Acesso a dados Simulado</td>                                
+                                <td></td>
+                                <td><i class="fa fa-close red">&nbsp;</i></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Separação de Conceitos</td>
+                                <td></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Domain-Driven Design</td>
+                                <td></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Teste Unitário</td>                             
+                                <td></td>
+                                <td><i class="fa fa-close red">&nbsp;</i></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Teste de Integração</td>
+                                <td></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Equipes Grandes</td>
+                                <td></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Orientado a Serviços</td>
+                                <td></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Baixo Acoplamento</td>
+                                <td></td>
+                                <td><i class="fa fa-close red">&nbsp;</i></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Mais Simples</td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                
+                <section data-state="red">
+                    <p><span class="red">Complexidade</span> não é ruim</p>
+
+                    <p><span class="red vbot"><small class="vbot">Complexidade</small></span> precisa ser avaliada</p>
+
+                    <aside class="notes">
+                        <ul>
+                            <li>Baixo Acomplamento</li>
+                            <li>Única Responsabilidade</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>
+                            Injeção de Dependência
+                        </h2>
+
+                        <blockquote cite="http://www.jamesshore.com/Blog/Dependency-Injection-Demystified.html">
+                            Injeção de Dependência é um termo de U$25,00 para um conceito de U$0,05.
+                        </blockquote>
+
+                    </section>
+
+                    <section>
+                        <img src="img/injection.jpg" />
+                    </section>
+
+                    <section>
+                        <h2>
+                            Inversão de Controle
+                        </h2>
+
+                        <h3><small>(Ninject, StructureMap, Unity, ...)</small></h3>
+
+                        <pre><code data-trim>
+private static void RegisterServices(IKernel kernel)
+{
+    kernel.Bind&lt;IContext&gt;()
+             .To&lt;Context&gt;();
+
+    kernel.Bind(typeof (IRepository&lt;&gt;))
+            .To(typeof (GenericRepository&lt;&gt;));
+}                   
+ 
+                    </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Nível 1</th>
+                                <th>Nível 2</th>
+                                <th>Nível 3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Acesso a dados Centralizado</td>
+                                <td></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Acesso a dados Simulado</td>                                
+                                <td></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Separação de Conceitos</td>
+                                <td></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Domain-Driven Design</td>
+                                <td></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Teste Unitário</td>                             
+                                <td></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Teste de Integração</td>
+                                <td></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Equipes Grandes</td>
+                                <td></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Orientado a Serviços</td>
+                                <td></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Baixo Acoplamento</td>
+                                <td></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                            </tr>
+                            <tr>
+                                <td>Mais Simples</td>
+                                <td><i class="fa fa-check green">&nbsp;</i></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section>
+                    <h2>Aplicação de Demonstração</h2>
+                </section>
+                
+                <section>
+                    <h2>Referências</h2>
+                    
+                    <img src="img/book.jpg" />
+                    <img src="img/pluralsight.jpg" />
+                </section>
+
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+                // Optional reveal.js plugins
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true },
+                    { src: 'plugin/notes/notes.js', async: true }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>
